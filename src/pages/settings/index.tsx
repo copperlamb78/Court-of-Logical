@@ -1,9 +1,17 @@
-import { Container } from "./style";
+
+
+import background from "../../assets/settingsback.png"
+import { Container, PrincipalContainer } from "../home/style"
+import { BackButton } from "./style"
 
 export function Settings() {
     return (
-        <Container>
-            <h1>Setting Page</h1>
-        </Container>
+        <PrincipalContainer>
+            <Container urlImg={background}>
+                <BackButton to={"/"}>    
+                    Return
+                </BackButton>
+            </Container>
+        </PrincipalContainer>
     )
 }
