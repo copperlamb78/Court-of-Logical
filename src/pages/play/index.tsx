@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AlertContainer, Background, CardBack, CardContainer, CardFront, Container, Image, P, Pergaminho, PrincipalContainer, QuestionButton } from "./style";
+import { AlertContainer, Background, CardBack, CardContainer, CardFront, Container, Image, P, Pergaminho, PrincipalContainer, QuestionButton, SkipButton } from "./style";
 
 import backcard from '../../assets/backcart.png'
 import pergaminho from '../../assets/pergaminho.png'
@@ -34,38 +34,42 @@ export function Play() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isFinished, setIsFinished] = useState(false)
 
+    function handleSkip() {
+        setCurrentIndex(5)
+    }
+
     useEffect(() => {
         if (currentIndex >= Tutorial.length) {
             setIsFinished(true)
             return
         }
         if (currentIndex == 1) {
-            const interval = setInterval(() =>  {
+            const interval = setInterval(() => {
                 setCurrentIndex((prevIndex) => prevIndex + 1)
             }, 6500)
             return () => clearInterval(interval)
         }
         if (currentIndex == 2) {
-            const interval = setInterval(() =>  {
+            const interval = setInterval(() => {
                 setCurrentIndex((prevIndex) => prevIndex + 1)
-            }, 11000)
+            }, 10000)
             return () => clearInterval(interval)
         }
         if (currentIndex == 3) {
-            const interval = setInterval(() =>  {
+            const interval = setInterval(() => {
                 setCurrentIndex((prevIndex) => prevIndex + 1)
             }, 7000)
             return () => clearInterval(interval)
         }
         if (currentIndex == 4) {
-            const interval = setInterval(() =>  {
+            const interval = setInterval(() => {
                 setCurrentIndex((prevIndex) => prevIndex + 1)
-            }, 10000)
+            }, 9000)
             return () => clearInterval(interval)
         }
-        const interval = setInterval(() =>  {
+        const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => prevIndex + 1)
-        }, 4000)
+        }, 6000)
         return () => clearInterval(interval)
     }, [currentIndex])
 
@@ -116,7 +120,7 @@ export function Play() {
 
     function handleAnswer(selectedAnswer: number) {
         const isCorrect = selectedAnswer === questions[currentQuestion].resposta
-        
+
         if (isCorrect) {
             setResultImage(correctImg)
             setCurrentQuestion((prevQuestion) => prevQuestion + 1);
@@ -124,75 +128,75 @@ export function Play() {
             setResultImage(wrongImg)
             setCurrentQuestion(0)
         }
-        
+
 
         setAnswer(selectedAnswer);
         if (currentQuestion < questions.length - 1) {
             setTimeout(() => {
-            setResultImage(null); // Limpa a imagem ao avançar para a próxima pergunta
-            }, 1500); // Espera 1 segundo antes de mudar para a próxima pergunta
-            
+                setResultImage(null); // Limpa a imagem ao avançar para a próxima pergunta
+            }, 2500); // Espera 1 segundo antes de mudar para a próxima pergunta
+
         } else {
             setTimeout(() => {
                 setResultImage(null); // Limpa a imagem de resultado antes de mostrar o alerta
                 alert('Você completou o quiz!');
-            }, 1500);
+            }, 2500);
         }
 
-        
+
 
     }
 
     if (isFinished) {
         return (
             <Container>
-                <Background src={background}/>
+                <Background src={background} />
                 <QuestionButton onClick={handlePergaminho}></QuestionButton>
                 {onClicked && (
                     <div>
-                        <Pergaminho src={pergaminho}/>
+                        <Pergaminho src={pergaminho} />
                         <P>
                             <p>{questions[currentQuestion].question}</p>
                         </P>
                     </div>
                 )}
                 <section>
-                    <CardContainer 
-                    flipped={flipped}
-                    onMouseEnter={() => setFlipped(false)} 
-                    onMouseLeave={() => setFlipped(true)}
-                    onClick={() => handleAnswer(0)}
+                    <CardContainer
+                        flipped={flipped}
+                        onMouseEnter={() => setFlipped(false)}
+                        onMouseLeave={() => setFlipped(true)}
+                        onClick={() => handleAnswer(0)}
                     >
-                        <CardFront frontcard={carta1}/>
-                        <CardBack backcard={backcard}/>
+                        <CardFront frontcard={carta1} />
+                        <CardBack backcard={backcard} />
                     </CardContainer>
-                    <CardContainer 
-                    flipped={flipped2}
-                    onMouseEnter={() => setFlipped2(false)} 
-                    onMouseLeave={() => setFlipped2(true)}
-                    onClick={() => handleAnswer(1)}
+                    <CardContainer
+                        flipped={flipped2}
+                        onMouseEnter={() => setFlipped2(false)}
+                        onMouseLeave={() => setFlipped2(true)}
+                        onClick={() => handleAnswer(1)}
                     >
-                        <CardFront frontcard={carta2}/>
-                        <CardBack backcard={backcard}/>
+                        <CardFront frontcard={carta2} />
+                        <CardBack backcard={backcard} />
                     </CardContainer>
-                    <CardContainer 
-                    flipped={flipped3}
-                    onMouseEnter={() => setFlipped3(false)} 
-                    onMouseLeave={() => setFlipped3(true)}
-                    onClick={() => handleAnswer(2)}
+                    <CardContainer
+                        flipped={flipped3}
+                        onMouseEnter={() => setFlipped3(false)}
+                        onMouseLeave={() => setFlipped3(true)}
+                        onClick={() => handleAnswer(2)}
                     >
-                        <CardFront frontcard={carta3}/>
-                        <CardBack backcard={backcard}/>
+                        <CardFront frontcard={carta3} />
+                        <CardBack backcard={backcard} />
                     </CardContainer>
                 </section>
 
                 {resultImage && (
                     <AlertContainer>
-                        <Background src={resultImage}/>
+                        <Background src={resultImage} />
                     </AlertContainer>
                 )}
             </Container>
-            
+
         )
     }
 
@@ -200,6 +204,7 @@ export function Play() {
     return (
         <PrincipalContainer>
             <Image src={Tutorial[currentIndex]} />
+            <SkipButton onClick={handleSkip}>Skip</SkipButton>
         </PrincipalContainer>
     )
 }

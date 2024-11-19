@@ -28,7 +28,7 @@ export const Container = styled.div`
 `
 export const Image = styled.img`
     width: 40%;
-    height: 100%;
+    height: 100vh;
 `
 
 export const Background = styled.img`
@@ -106,7 +106,6 @@ export const P = styled.div`
     position: absolute;
     top: 10vh;
     right: 40vw;
-    font-family: "Jacquard 12", system-ui;
     font-size: 24px;
     font-weight: 700;
     text-align: justify;
@@ -121,4 +120,28 @@ export const AlertContainer = styled.div`
     position: absolute;
     left: 25vw;
 
+`
+
+export const SkipButton = styled.button`
+    position: absolute;
+    right: 37vw;
+    bottom: 10vh;
+    width: 8vw;
+    height: 8vh;
+    background-color: #ffefab;
+    border-radius: 8vw;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    font-size: 2rem;
+    border: 2px solid black;
+    font-family: "Aladin", system-ui;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #fee890;
+    }
 `

@@ -15,9 +15,10 @@ export const BackButton = styled(NavLink)`
     justify-content: center;
     text-decoration: none;
     color: black;
-    font-family: "Jacquard 12", system-ui;
     font-size: 2rem;
     border: 2px solid black;
+    font-family: "Aladin", system-ui;
+    cursor: pointer;
     transition: all 0.3s;
 
     &:hover {

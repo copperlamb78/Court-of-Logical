@@ -6,13 +6,16 @@ import { Settings } from "./pages/settings";
 
 export function App() {
   return (
+
     <Router>
       <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/play" element={<Play />}/>
-        <Route path="/settings" element={<Settings />}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/play" element={<Play />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
+
+
   )
 }
 
